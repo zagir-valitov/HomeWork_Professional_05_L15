@@ -1,6 +1,13 @@
-﻿namespace Exercise_01;
+﻿namespace Exercise_00;
 
-public interface IMyCloneable<T>
+/// <summary>
+/// Интерфейс с обобщенным типом Т поддерживает клонирование - создается новый экземпляр класса наследника с тем же значением
+/// </summary>
+interface IMyCloneable<T>
 {
-    public T MyFunctionClone();
+    /// <summary>
+    /// Метод для реализации клонирования в классе наследнике
+    /// </summary>
+    /// <returns>T</returns>
+    public abstract T MyClone();
 }

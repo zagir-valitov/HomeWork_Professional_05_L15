@@ -1,0 +1,34 @@
+﻿При реализации стандартного интерфеса ICloneable в методе Clone() вызывается специальный метод MemberwiseClone() класса Object.
+	
+	public object Clone()
+	{
+		return MemberwiseClone();
+	}
+
+Этот метод возвращает тип object, что вызывает необходимость произвести преобразование к необходимому типу
+в используемом классе. Это сказывается на производительности:
+
+	Ford fordCloned2 = (Ford)ford.Clone();
+
+Кроме того метод MemberwiseClone() реализует только неглубокое копирование. Поэтому при клонировании этим методом сложных объектов
+типа Transmission и Engine в склонировнном объекте создается только ссылки на объек на поля клонируемого объекта.
+
+При реализации пользовательского интерфейса IMyCloneable в методе MyClone() создаются новые объекты для сложных типов,
+и нет необходимости приведения к новому типу:
+
+	public Ford MyClone()
+    {
+        return new Ford(
+            Model, 
+            new Transmission(Transmission.TransmissioType, Transmission.GearsNumber), 
+            new Engine(Engine.EngineType, Engine.EnginePowerHp), 
+            BodyType, 
+            DoorsNumber, 
+            Color, 
+            VIN, 
+            TransportType, 
+            CarType, 
+            TransportId);
+    }
+
+	
